@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自媒體與頻道｜幕後軍師</title>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .media-header { padding: 60px 0 40px; text-align: center; }
+  
+  .media-tabs { display: flex; justify-content: center; gap: 16px; margin-bottom: 48px; border-bottom: 1px solid var(--line); padding-bottom: 16px; flex-wrap: wrap; }
+  .media-tab { padding: 8px 16px; font-weight: 500; color: var(--ink-soft); cursor: pointer; transition: all 0.3s ease; position: relative; }
+  .media-tab.active { color: var(--red); font-weight: 700; }
+  .media-tab.active::after { content: ""; position: absolute; bottom: -17px; left: 0; right: 0; height: 2px; background: var(--red); }
+  .media-tab:hover:not(.active) { color: var(--ink); }
+
+  .media-section { display: none; margin-bottom: 80px; }
+  .media-section.active { display: block; animation: fadeIn 0.5s ease forwards; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Articles Grid */
+  .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 32px; }
+  .article-card { background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.3s ease; border: 1px solid var(--line); }
+  .article-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .article-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--paper-alt); }
+  .article-content { padding: 24px; }
+  .article-meta { display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-soft); margin-bottom: 12px; }
+  .article-title { font-family: var(--serif); font-size: 18px; margin-bottom: 12px; color: var(--ink); line-height: 1.4; }
+  .article-excerpt { font-size: 14px; color: var(--ink-soft); margin-bottom: 16px; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .article-read-more { font-size: 14px; font-weight: 500; color: var(--red); display: inline-flex; align-items: center; gap: 4px; }
+
+  /* Video Grid */
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 32px; }
+  .video-card { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 16/9; background: #000; cursor: pointer; }
+  .video-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: opacity 0.3s ease; }
+  .video-card:hover img { opacity: 0.5; }
+  .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; pointer-events: none; transition: transform 0.2s ease; }
+  .play-btn svg { width: 24px; height: 24px; fill: var(--red); margin-left: 4px; }
+  .video-card:hover .play-btn { transform: translate(-50%, -50%) scale(1.1); }
+  .video-title { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: #fff; font-family: var(--serif); font-size: 18px; }
+
+  @media (max-width: 600px) {
+    .video-grid { grid-template-columns: 1fr; }
+  }
+  
+  /* Channel Info */
+  .channel-info { background: var(--paper-alt); padding: 48px; border-radius: 8px; text-align: center; border: 1px solid var(--gold); }
+  .channel-info h3 { font-family: var(--serif); font-size: 28px; margin-bottom: 16px; }
+  .channel-info p { max-width: 600px; margin: 0 auto 32px; color: var(--ink-soft); }
+  .social-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .social-link { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: #fff; border: 1px solid var(--line); border-radius: 40px; font-weight: 500; transition: all 0.3s ease; }
+  .social-link:hover { border-color: var(--red); color: var(--red); box-shadow: 0 4px 12px rgba(138,37,34,0.1); }
+  
+  .report-highlight { border-left: 4px solid var(--red); padding-left: 20px; margin: 32px 0; background: rgba(255,255,255,0.5); padding: 24px; border-radius: 0 8px 8px 0; }
+  .report-highlight h4 { font-family: var(--serif); font-size: 20px; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">幕後軍師<span class="stamp">印</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#about">關於我們</a>
+      <a href="tutors.html">導師資歷</a>
+      <a href="resources.html">範例資料庫</a>
+      <a href="media.html">自媒體與頻道</a>
+      <a href="index.html#faq">常見問題</a>
+      <a href="become-expert.html" class="nav-cta-mobile btn">申請成為專家</a>
+    </nav>
+    <a href="index.html#start" class="nav-cta">尋求專家協助</a>
+    <button class="burger" id="burgerBtn" aria-label="開啟選單">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="media-header">
+      <span class="eyebrow">發布與洞察</span>
+      <h2>自媒體文章與社會實驗報告</h2>
+      <p style="margin-top:16px; color:var(--ink-soft);">在這裡，我們分享對教育體制的觀察、學習方法的拆解，以及透明治理平台的實踐經驗。</p>
+    </div>
+
+    <div class="media-tabs">
+      <div class="media-tab active" onclick="switchTab('articles')">專欄文章</div>
+      <div class="media-tab" onclick="switchTab('reports')">社會實驗報告</div>
+      <div class="media-tab" onclick="switchTab('videos')">教學影片</div>
+      <div class="media-tab" onclick="switchTab('channel')">頻道資訊</div>
+    </div>
+
+    <!-- Articles -->
+    <div id="articles" class="media-section active">
+      <div class="article-grid">
+        <div class="article-card">
+          <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=800&auto=format&fit=crop" alt="AI 學習" class="article-img">
+          <div class="article-content">
+            <div class="article-meta"><span>學習策略</span><span>2026.06.15</span></div>
+            <h3 class="article-title">AI 答錯咗，點揾出嚟？三步驗證法</h3>
+            <p class="article-excerpt">越來越多學生依賴 ChatGPT 做功課，但往往無法辨別其「幻覺」與錯誤。本文為您拆解如何以「三步驗證法」有效檢驗 AI 的輸出，建立正確的 AI 學習素養。</p>
+            <a href="#" class="article-read-more">閱讀全文 <span>→</span></a>
+          </div>
+        </div>
+        <div class="article-card">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop" alt="護理實踐" class="article-img">
+          <div class="article-content">
+            <div class="article-meta"><span>學術寫作</span><span>2026.05.28</span></div>
+            <h3 class="article-title">Gibbs Reflective Cycle：如何寫出不流於表面的反思？</h3>
+            <p class="article-excerpt">護理系學生最頭痛的 Clinical Reflection，關鍵在於第三與第四階段 (Feelings & Evaluation) 的深度。我們邀請首席顧問 Dr. C 分享高分秘訣。</p>
+            <a href="#" class="article-read-more">閱讀全文 <span>→</span></a>
+          </div>
+        </div>
+        <div class="article-card">
+          <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop" alt="商科" class="article-img">
+          <div class="article-content">
+            <div class="article-meta"><span>職涯規劃</span><span>2026.04.10</span></div>
+            <h3 class="article-title">不再套用模板：寫一份讓 HR 停留超過 10 秒的 CV</h3>
+            <p class="article-excerpt">在競爭激烈的求職市場中，千篇一律的 CV 模板只會讓您石沉大海。這篇文章教您如何運用「強勢動詞」與「量化結果」來重塑您的履歷。</p>
+            <a href="#" class="article-read-more">閱讀全文 <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reports -->
+    <div id="reports" class="media-section">
+      <div class="report-highlight">
+        <h4>《規則的演化》：教育中介去中心化實驗（中期報告）</h4>
+        <p>「幕後軍師」不只是一個商業平台，更是一場旨在打破「中介黑箱」的社會實驗。本報告回顧了平台成立首年實施「擁有權與決策權分離」以及「董事會會議紀錄完全公開」機制的成效與挑戰。</p>
+        <div style="margin-top: 16px;">
+          <a href="#" class="btn btn-outline" style="padding: 10px 20px; font-size: 14px;">下載完整 PDF 報告</a>
+        </div>
+      </div>
+      
+      <div class="article-grid">
+         <div class="article-card">
+          <div class="article-content" style="padding: 32px;">
+            <div class="article-meta"><span>透明治理</span><span>2026.01.20</span></div>
+            <h3 class="article-title">為何我們選擇公開所有贊助審查與會議紀錄？</h3>
+            <p class="article-excerpt">探討透明機制如何建立家長與導師雙向信任的護城河，以及我們在實行初期遇到的阻力與反思。</p>
+            <a href="#" class="article-read-more">閱讀摘要 <span>→</span></a>
+          </div>
+        </div>
+        <div class="article-card">
+          <div class="article-content" style="padding: 32px;">
+            <div class="article-meta"><span>數據洞察</span><span>2025.10.05</span></div>
+            <h3 class="article-title">教育市場「資訊不對稱」的代價估算</h3>
+            <p class="article-excerpt">基於首 500 個配對案例的數據分析，揭示傳統中介模式中，學生與家長付出的隱性成本與錯配機率。</p>
+            <a href="#" class="article-read-more">閱讀摘要 <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Videos -->
+    <div id="videos" class="media-section">
+      <div class="video-grid">
+        <div class="video-card">
+          <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop" alt="YouTube Thumbnail">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-title">【實戰示範】如何運用 Claude 整理海量文獻回顧？</div>
+        </div>
+        <div class="video-card">
+          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop" alt="YouTube Thumbnail">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-title">【導師訪談】從前線護士到學術顧問，拆解進修迷思</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Channel -->
+    <div id="channel" class="media-section">
+      <div class="channel-info">
+        <h3>追蹤「幕後軍師」頻道矩陣</h3>
+        <p>我們透過多個平台分享最新的教育洞察、學習技巧示範與平台治理進度。歡迎追蹤我們，掌握第一手資訊，並參與我們的社會實驗。</p>
+        <div class="social-links">
+          <a href="#" class="social-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Instagram 官方帳號
+          </a>
+          <a href="#" class="social-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube 頻道
+          </a>
+          <a href="#" class="social-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
+            Telegram 社群
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Navigation Menu Toggle
+  const burgerBtn = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  burgerBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    burgerBtn.classList.toggle('active');
+  });
+
+  // Media Tabs Switching
+  function switchTab(tabId) {
+    document.querySelectorAll('.media-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.media-section').forEach(s => s.classList.remove('active'));
+    
+    event.currentTarget.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+  }
+</script>
+</body>
+</html>

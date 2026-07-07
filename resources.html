@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>範例資料庫｜幕後軍師</title>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .resources-header { padding: 60px 0 40px; text-align: center; }
+  .resource-category { margin-bottom: 60px; }
+  .resource-category h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 24px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  .resource-card { background: var(--paper-alt); padding: 24px; border-radius: 4px; border: 1px solid var(--line); transition: transform 0.3s ease; }
+  .resource-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+  .resource-type { font-size: 12px; color: var(--red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; display: block; }
+  .resource-card h4 { font-size: 18px; margin-bottom: 12px; color: var(--ink); }
+  .resource-card p { font-size: 14px; color: var(--ink-soft); margin-bottom: 16px; }
+  .resource-link { font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">幕後軍師<span class="stamp">印</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#about">關於我們</a>
+      <a href="tutors.html">導師資歷</a>
+      <a href="resources.html">範例資料庫</a>
+      <a href="media.html">自媒體與頻道</a>
+      <a href="index.html#faq">常見問題</a>
+      <a href="become-expert.html" class="nav-cta-mobile btn">申請成為專家</a>
+    </nav>
+    <a href="index.html#start" class="nav-cta">尋求專家協助</a>
+    <button class="burger" id="burgerBtn" aria-label="開啟選單">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="resources-header">
+      <span class="eyebrow">資源庫</span>
+      <h2>範例功課與寫作資源</h2>
+      <p style="margin-top:16px; color:var(--ink-soft);">各領域的高分範例與寫作模板，助您掌握學術與求職寫作的精髓。</p>
+    </div>
+
+    <div class="resource-category">
+      <h3>學術功課與論文範例 (Essays & Dissertations)</h3>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-type">護理系 (Nursing)</span>
+          <h4>Clinical Reflection (Gibbs Cycle) 範例</h4>
+          <p>結合真實臨床案例，示範如何運用 Gibbs Reflective Cycle 進行深入的反思與文獻支持。</p>
+          <a href="#" class="resource-link">查看範例</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">商科 (MBA)</span>
+          <h4>Market Entry Strategy Case Study</h4>
+          <p>包含 PESTEL 及 SWOT 分析，示範高分商業案例分析的結構與數據呈現方式。</p>
+          <a href="#" class="resource-link">查看範例</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">社科 (Social Sciences)</span>
+          <h4>Qualitative Research Proposal</h4>
+          <p>清晰展示研究問題、文獻回顧及研究方法設計的學術規範。</p>
+          <a href="#" class="resource-link">查看範例</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="resource-category">
+      <h3>升學個人自述 (Personal Statement)</h3>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-type">英國碩士申請</span>
+          <h4>MSc Management PS 範本</h4>
+          <p>強調跨學科背景轉換與未來職涯規劃的連貫性，成功獲 G5 院校錄取。</p>
+          <a href="#" class="resource-link">查看範例</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">本地醫療專科</span>
+          <h4>Master of Nursing PS 範本</h4>
+          <p>突出臨床前線經驗與對進階護理實踐的熱誠，結構嚴謹且具說服力。</p>
+          <a href="#" class="resource-link">查看範例</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="resource-category">
+      <h3>求職履歷表 (CV / Resume)</h3>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-type">金融與顧問業</span>
+          <h4>Investment Banking CV 模板</h4>
+          <p>標準單頁式 (1-page) 格式，使用強勢動詞 (Action Verbs) 突出成就與量化數據。</p>
+          <a href="#" class="resource-link">查看範本</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">政府與公營機構</span>
+          <h4>Public Sector CV 模板</h4>
+          <p>詳盡展示行政經驗、合規處理及大型項目管理能力，符合公營機構審查口味。</p>
+          <a href="#" class="resource-link">查看範本</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  burgerBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    burgerBtn.classList.toggle('active');
+  });
+</script>
+</body>
+</html>

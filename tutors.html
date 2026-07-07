@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>導師資歷｜幕後軍師</title>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .tutors-header { padding: 60px 0 40px; text-align: center; }
+  .tutor-list { display: flex; flex-direction: column; gap: 40px; margin-bottom: 80px; }
+  .tutor-profile { display: flex; gap: 32px; background: var(--paper-alt); padding: 32px; border-radius: 4px; border: 1px solid var(--line); align-items: flex-start; }
+  .tutor-avatar { width: 120px; height: 120px; flex-shrink: 0; background: var(--paper); border: 2px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 36px; font-weight: 700; color: var(--red); }
+  .tutor-info { flex: 1; }
+  .tutor-info h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 8px; color: var(--ink); }
+  .tutor-title { font-size: 15px; color: var(--red); font-weight: 700; margin-bottom: 16px; display: block; }
+  .tutor-bio { font-size: 15px; color: var(--ink-soft); margin-bottom: 20px; line-height: 1.8; }
+  .tutor-credentials { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px; padding: 16px; background: rgba(255,255,255,0.4); border-radius: 4px; }
+  .cred-item { font-size: 14px; }
+  .cred-label { font-weight: 700; display: block; margin-bottom: 4px; color: var(--ink); }
+  .tutor-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tutor-tag { font-size: 12px; padding: 4px 12px; background: var(--ink); color: var(--paper); border-radius: 20px; letter-spacing: 0.05em; }
+  
+  @media (max-width: 768px) {
+    .tutor-profile { flex-direction: column; align-items: center; text-align: center; }
+    .tutor-credentials { text-align: left; }
+    .tutor-tags { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">幕後軍師<span class="stamp">印</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#about">關於我們</a>
+      <a href="tutors.html">導師資歷</a>
+      <a href="resources.html">範例資料庫</a>
+      <a href="media.html">自媒體與頻道</a>
+      <a href="index.html#faq">常見問題</a>
+      <a href="become-expert.html" class="nav-cta-mobile btn">申請成為專家</a>
+    </nav>
+    <a href="index.html#start" class="nav-cta">尋求專家協助</a>
+    <button class="burger" id="burgerBtn" aria-label="開啟選單">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="tutors-header">
+      <span class="eyebrow">專家團隊</span>
+      <h2>註冊導師資歷庫</h2>
+      <p style="margin-top:16px; color:var(--ink-soft);">本平台嚴格甄選各領域菁英，具備豐富學術與實戰經驗，為您提供最專業的指導。</p>
+    </div>
+
+    <div class="tutor-list">
+      <!-- Tutor 1 -->
+      <div class="tutor-profile">
+        <div class="tutor-avatar">Dr. C</div>
+        <div class="tutor-info">
+          <h3>Dr. C (醫護學科首席顧問)</h3>
+          <span class="tutor-title">前公立醫院資深護師 / 大學客席講師</span>
+          <div class="tutor-credentials">
+            <div class="cred-item">
+              <span class="cred-label">學歷背景</span>
+              香港大學護理學博士 (PhD in Nursing, HKU)
+            </div>
+            <div class="cred-item">
+              <span class="cred-label">指導經驗</span>
+              8 年+ 學術寫作與實習指導
+            </div>
+          </div>
+          <p class="tutor-bio">專攻臨床反思 (Clinical Reflection)、實證護理 (EBP) 及公共衛生政策。深諳香港本地醫療體系與護理院校評分準則，擅長引導學生將前線臨床經驗轉化為具備學術深度的論文。曾協助過百名在職護士順利完成進修學位。</p>
+          <div class="tutor-tags">
+            <span class="tutor-tag">Nursing</span>
+            <span class="tutor-tag">Public Health</span>
+            <span class="tutor-tag">Gibbs Cycle</span>
+            <span class="tutor-tag">EBP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tutor 2 -->
+      <div class="tutor-profile">
+        <div class="tutor-avatar">Mr. L</div>
+        <div class="tutor-info">
+          <h3>Mr. L (商管與數據策略總監)</h3>
+          <span class="tutor-title">前跨國管理顧問 / 數據分析專家</span>
+          <div class="tutor-credentials">
+            <div class="cred-item">
+              <span class="cred-label">學歷背景</span>
+              英國曼徹斯特大學工商管理碩士 (MBA)
+            </div>
+            <div class="cred-item">
+              <span class="cred-label">指導經驗</span>
+              5 年+ 商業案例分析與數據指導
+            </div>
+          </div>
+          <p class="tutor-bio">擁有多年頂尖企管顧問經驗，精通市場營銷策略、財務模型建構及量化數據分析。擅長教導學生如何運用 SPSS/R 進行數據分析，並將複雜數據轉化為清晰的商業洞察。其指導的商業案例分析 (Case Study) 屢獲高分。</p>
+          <div class="tutor-tags">
+            <span class="tutor-tag">MBA</span>
+            <span class="tutor-tag">Marketing Strategy</span>
+            <span class="tutor-tag">Data Analysis (SPSS/R)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tutor 3 -->
+      <div class="tutor-profile">
+        <div class="tutor-avatar">Ms. K</div>
+        <div class="tutor-info">
+          <h3>Ms. K (社科與教育研究導師)</h3>
+          <span class="tutor-title">註冊社工 / 質性研究員</span>
+          <div class="tutor-credentials">
+            <div class="cred-item">
+              <span class="cred-label">學歷背景</span>
+              香港中文大學社會科學碩士 (M.Soc.Sc, CUHK)
+            </div>
+            <div class="cred-item">
+              <span class="cred-label">指導經驗</span>
+              6 年+ 文獻回顧與質性研究指導
+            </div>
+          </div>
+          <p class="tutor-bio">專精社會工作、心理學及特殊教育領域。對香港本地社福政策及社會現象有深入見解。擅長指導質性研究方法 (Qualitative Research)，包括訪談設計、主題分析 (Thematic Analysis) 及嚴謹的文獻回顧 (Literature Review)。</p>
+          <div class="tutor-tags">
+            <span class="tutor-tag">Social Work</span>
+            <span class="tutor-tag">Psychology</span>
+            <span class="tutor-tag">Qualitative Research</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Tutor 4 -->
+      <div class="tutor-profile">
+        <div class="tutor-avatar">Mr. J</div>
+        <div class="tutor-info">
+          <h3>Mr. J (AI 學習素養教練)</h3>
+          <span class="tutor-title">教育科技顧問 / 生成式 AI 實踐者</span>
+          <div class="tutor-credentials">
+            <div class="cred-item">
+              <span class="cred-label">學歷背景</span>
+              香港科技大學工程碩士 (MPhil, HKUST)
+            </div>
+            <div class="cred-item">
+              <span class="cred-label">指導經驗</span>
+              3 年+ AI 輔助學習指導
+            </div>
+          </div>
+          <p class="tutor-bio">「幕後軍師」旗艦課程『AI 學習教練課』首席設計者。熟悉各類大型語言模型 (ChatGPT, Claude) 的底層邏輯與學術應用界線。致力於教導學生如何合規且高效地利用 AI 提升學習效率、進行腦力激盪與潤飾文章，徹底根絕抄襲風險。</p>
+          <div class="tutor-tags">
+            <span class="tutor-tag">AI Literacy</span>
+            <span class="tutor-tag">Prompt Engineering</span>
+            <span class="tutor-tag">EdTech</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  burgerBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    burgerBtn.classList.toggle('active');
+  });
+</script>
+</body>
+</html>
